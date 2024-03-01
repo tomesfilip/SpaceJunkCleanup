@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://2xb440ueyavp"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_e7w3a"]
+[ext_resource type="Texture2D" uid="uid://bk488lcxh3hcd" path="res://assets/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Bases/PNGs/Main Ship - Base - Damaged.png" id="2_i7a6q"]
+[ext_resource type="Texture2D" uid="uid://bdcwl152805io" path="res://assets/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Bases/PNGs/Main Ship - Base - Full health.png" id="3_yclyj"]
+[ext_resource type="Texture2D" uid="uid://deibqfk0qlmm7" path="res://assets/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Bases/PNGs/Main Ship - Base - Slight damage.png" id="4_wke28"]
+[ext_resource type="Texture2D" uid="uid://bd7o2hlwhpm6b" path="res://assets/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Bases/PNGs/Main Ship - Base - Very damaged.png" id="5_2ihmw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5gaa5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_i7a6q")
+}],
+"loop": true,
+"name": &"Damaged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_yclyj")
+}],
+"loop": true,
+"name": &"FullHealth",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_wke28")
+}],
+"loop": true,
+"name": &"SlightlyDamaged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_2ihmw")
+}],
+"loop": true,
+"name": &"VeryDamaged",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_e7w3a")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5gaa5")
+animation = &"VeryDamaged"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-5, -4, -15, 5, -15, 11, -13, 11, -5, 7, -3, 7, -3, 13, 3, 13, 3, 7, 6, 7, 13, 11, 15, 11, 15, 5, 5, -4, 0, -13)
