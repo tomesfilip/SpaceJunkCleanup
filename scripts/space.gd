@@ -9,6 +9,8 @@ extends Node2D
 @onready var asteroid_container = $AsteroidContainer
 @onready var hud = $UILayer/HUD
 @onready var game_over_screen = $UILayer/GameOverScreen
+@onready var asteroid_spawn_timer = $AsteroidSpawnTimer
+@onready var space_junk_spawn_timer = $SpaceJunkSpawnTimer
 
 var player = null
 var score := 0:
@@ -37,9 +39,14 @@ func save_game():
 	var save_file = FileAccess.open("user://save.data", FileAccess.WRITE)
 	save_file.store_32(high_score)
 
-func _process(_delta):
+func _process(delta):
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
+	
+	if asteroid_spawn_timer.wait_time > 0.3:
+		asteroid_spawn_timer.wait_time -= delta * 0.02
+	if space_junk_spawn_timer.wait_time > 0.15:
+		space_junk_spawn_timer.wait_time -= delta * 0.04
 
 
 func _on_player_laser_shot(laser_scene, location):
@@ -50,7 +57,7 @@ func _on_player_laser_shot(laser_scene, location):
 
 func _on_space_junk_spawn_timer_timeout():
 	var space_junk = space_junk_scenes.pick_random().instantiate()
-	space_junk.global_position = Vector2(randf_range(100, 1000), -50)
+	space_junk.global_position = Vector2(randf_range(10, 1140), -50)
 	space_junk.destroyed.connect(_on_space_junk_destroyed)
 	space_junk_container.add_child(space_junk)
 	
@@ -58,7 +65,7 @@ func _on_space_junk_spawn_timer_timeout():
 
 func _on_asteroid_spawn_timer_timeout():
 	var asteroid = asteroid_scenes.pick_random().instantiate()
-	asteroid.global_position = Vector2(randf_range(100, 1000), -50)
+	asteroid.global_position = Vector2(randf_range(10, 1140), -50)
 	asteroid_container.add_child(asteroid)
 
 func _on_space_junk_destroyed(points):
