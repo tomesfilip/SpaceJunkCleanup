@@ -1,8 +1,12 @@
 extends Node2D
 
+@export var space_junk_scenes: Array[PackedScene] = []
+@export var asteroid_scenes: Array[PackedScene] = []
 
 @onready var player_spawn_position = $PlayerSpawnPosition
 @onready var laser_container = $LaserContainer
+@onready var space_junk_container = $SpaceJunkContainer
+@onready var asteroid_container = $AsteroidContainer
 
 var player = null
 
@@ -22,3 +26,16 @@ func _on_player_laser_shot(laser_scene, location):
 	var laser = laser_scene.instantiate()
 	laser.global_position = location
 	laser_container.add_child(laser)
+
+
+func _on_space_junk_spawn_timer_timeout():
+	var space_junk = space_junk_scenes.pick_random().instantiate()
+	space_junk.global_position = Vector2(randf_range(100, 1000), -50)
+	space_junk_container.add_child(space_junk)
+	
+
+
+func _on_asteroid_spawn_timer_timeout():
+	var asteroid = asteroid_scenes.pick_random().instantiate()
+	asteroid.global_position = Vector2(randf_range(100, 1000), -50)
+	asteroid_container.add_child(asteroid)

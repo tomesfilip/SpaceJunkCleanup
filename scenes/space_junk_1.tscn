@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://crk6bfx5bg4x5" path="res://assets/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Engines/PNGs/Main Ship - Engines - Base Engine.png" id="2_l0ehr"]
 
 [node name="SpaceJunk1" instance=ExtResource("1_r4ueg")]
+speed = 150
+hp = 1
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_l0ehr")
