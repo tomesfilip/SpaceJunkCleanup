@@ -75,7 +75,6 @@ func _on_space_junk_spawn_timer_timeout():
 	space_junk_container.add_child(space_junk)
 	
 
-
 func _on_asteroid_spawn_timer_timeout():
 	var asteroid = asteroid_scenes.pick_random().instantiate()
 	asteroid.global_position = Vector2(randf_range(10, 1140), -50)

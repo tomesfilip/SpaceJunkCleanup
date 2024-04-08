@@ -1,24 +1,119 @@
-[gd_scene load_steps=2 format=3 uid="uid://cwe0dr3iyip7t"]
+[gd_scene load_steps=7 format=3 uid="uid://cwe0dr3iyip7t"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_1hsqy"]
+[ext_resource type="FontFile" uid="uid://b8xygkepem7ej" path="res://Pixeboy-z8XGD.ttf" id="2_am71o"]
+[ext_resource type="Texture2D" uid="uid://dvp3ulsqdn1gl" path="res://assets/bg-space.jpg" id="3_l3ye8"]
+[ext_resource type="Texture2D" uid="uid://d4gxe4g183igs" path="res://assets/star.png" id="4_51cof"]
 
-[node name="Main" type="Node2D"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mnicr"]
+bg_color = Color(0.235294, 0.160784, 0.501961, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ns8yb"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(576, 1, 1)
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = -1000.0
+initial_velocity_max = -1000.0
+gravity = Vector3(0, 0, 0)
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_1hsqy")
 
-[node name="Play" type="Button" parent="."]
-offset_left = 429.0
-offset_top = 159.0
-offset_right = 712.0
-offset_bottom = 300.0
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(0, 648)
+
+[node name="SpaceBackground" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_repeat = 3
+texture = ExtResource("3_l3ye8")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 1152, 648)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -160.0
+offset_right = 250.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_mnicr")
+
+[node name="Play" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -120.0
+offset_right = 130.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_am71o")
+theme_override_font_sizes/font_size = 58
 text = "Play"
 
-[node name="Quit" type="Button" parent="."]
-offset_left = 429.0
-offset_top = 369.0
-offset_right = 712.0
-offset_bottom = 510.0
+[node name="Quit" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = 40.0
+offset_right = 120.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_am71o")
+theme_override_font_sizes/font_size = 46
 text = "Quit
 "
 
-[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+z_index = -1
+texture_repeat = 3
+position = Vector2(577, 324)
+texture = ExtResource("3_l3ye8")
+region_enabled = true
+region_rect = Rect2(0, 0, 1152, 648)
+
+[node name="StarParticleEffect" type="GPUParticles2D" parent="."]
+position = Vector2(576, -50)
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_ns8yb")
+texture = ExtResource("4_51cof")
+lifetime = 1.25
+preprocess = 5.0
+
+[connection signal="pressed" from="Panel/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Panel/Quit" to="." method="_on_quit_pressed"]

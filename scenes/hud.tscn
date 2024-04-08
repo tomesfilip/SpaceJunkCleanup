@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bc5bdluir5vuq"]
+[gd_scene load_steps=4 format=3 uid="uid://bc5bdluir5vuq"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_dxpgn"]
+[ext_resource type="FontFile" uid="uid://b8xygkepem7ej" path="res://Pixeboy-z8XGD.ttf" id="2_d4aa5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_033i2"]
-font_size = 36
+font = ExtResource("2_d4aa5")
+font_size = 42
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -18,7 +20,9 @@ script = ExtResource("1_dxpgn")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 23.0
+offset_left = 39.0
+offset_top = 27.0
+offset_bottom = 52.0
 grow_horizontal = 2
 text = "SCORE: 9999"
 label_settings = SubResource("LabelSettings_033i2")

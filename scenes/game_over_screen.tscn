@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1y1ulrs6hqnt"]
+[gd_scene load_steps=6 format=3 uid="uid://b1y1ulrs6hqnt"]
 
 [ext_resource type="Script" path="res://scripts/game_over_screen.gd" id="1_32fqv"]
+[ext_resource type="FontFile" uid="uid://b8xygkepem7ej" path="res://Pixeboy-z8XGD.ttf" id="2_mq8rw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2776k"]
 bg_color = Color(0.235294, 0.160784, 0.501961, 1)
@@ -10,10 +11,12 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_apsgu"]
-font_size = 36
+font = ExtResource("2_mq8rw")
+font_size = 52
 
 [sub_resource type="LabelSettings" id="LabelSettings_al2na"]
-font_size = 28
+font = ExtResource("2_mq8rw")
+font_size = 32
 
 [node name="GameOverScreen" type="Control"]
 layout_mode = 3
@@ -60,6 +63,8 @@ offset_bottom = 68.5
 grow_horizontal = 2
 text = "Game Over"
 label_settings = SubResource("LabelSettings_apsgu")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HighScore" type="Label" parent="Panel"]
 layout_mode = 1
@@ -77,6 +82,7 @@ grow_vertical = 2
 text = "High score: 9999"
 label_settings = SubResource("LabelSettings_al2na")
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Score" type="Label" parent="Panel"]
 layout_mode = 1
@@ -94,6 +100,7 @@ grow_vertical = 2
 text = "Score: 9999"
 label_settings = SubResource("LabelSettings_al2na")
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="RestartButton" type="Button" parent="Panel"]
 layout_mode = 1
@@ -108,7 +115,8 @@ offset_right = 101.0
 offset_bottom = 117.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("2_mq8rw")
+theme_override_font_sizes/font_size = 36
 text = "Play again"
 
 [connection signal="pressed" from="Panel/RestartButton" to="." method="_on_restart_button_pressed"]
