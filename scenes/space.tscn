@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d14pe7h0pn0gn"]
+[gd_scene load_steps=14 format=3 uid="uid://d14pe7h0pn0gn"]
 
 [ext_resource type="PackedScene" uid="uid://2xb440ueyavp" path="res://scenes/player.tscn" id="1_jlj46"]
 [ext_resource type="Script" path="res://scripts/space.gd" id="1_wldxv"]
@@ -6,8 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://bbo74vm05gd1t" path="res://scenes/space_junk.tscn" id="4_jqrsb"]
 [ext_resource type="PackedScene" uid="uid://db1lwau7pnvq6" path="res://scenes/space_junk_1.tscn" id="5_1oaeq"]
 [ext_resource type="PackedScene" uid="uid://bc5bdluir5vuq" path="res://scenes/hud.tscn" id="5_bgsbf"]
+[ext_resource type="AudioStream" uid="uid://ctcg327clmigw" path="res://assets/sounds/sfx_laser2.ogg" id="5_eu28k"]
 [ext_resource type="Texture2D" uid="uid://dvp3ulsqdn1gl" path="res://assets/bg-space.jpg" id="5_wj8x6"]
 [ext_resource type="PackedScene" uid="uid://b1y1ulrs6hqnt" path="res://scenes/game_over_screen.tscn" id="6_ohw6g"]
+[ext_resource type="AudioStream" uid="uid://ckn3rm7v3tkw6" path="res://assets/sounds/hit.wav" id="6_us46h"]
+[ext_resource type="AudioStream" uid="uid://b223it4vnhrua" path="res://assets/sounds/explode.wav" id="7_nrgg0"]
 [ext_resource type="Texture2D" uid="uid://d4gxe4g183igs" path="res://assets/star.png" id="9_dnkm4"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bxg8a"]
@@ -24,6 +27,17 @@ gravity = Vector3(0, 0, 0)
 script = ExtResource("1_wldxv")
 space_junk_scenes = Array[PackedScene]([ExtResource("4_jqrsb"), ExtResource("5_1oaeq")])
 asteroid_scenes = Array[PackedScene]([ExtResource("4_iney7")])
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="LaserSound" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("5_eu28k")
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("6_us46h")
+
+[node name="DestroyedSound" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("7_nrgg0")
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 

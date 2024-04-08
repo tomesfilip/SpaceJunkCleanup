@@ -1,6 +1,7 @@
 class_name SpaceJunk extends Area2D
 
 signal destroyed(points)
+signal hit
 
 @export var speed = 150
 @export var hp = 1
@@ -25,3 +26,5 @@ func take_damage(amount):
 	if hp <= 0:
 		destroyed.emit(points)
 		destroy()
+	else:
+		hit.emit()

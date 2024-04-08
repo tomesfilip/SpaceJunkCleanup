@@ -13,6 +13,10 @@ extends Node2D
 @onready var space_junk_spawn_timer = $SpaceJunkSpawnTimer
 @onready var parallax_background = $ParallaxBackground
 
+@onready var laser_sound = $SFX/LaserSound
+@onready var hit_sound = $SFX/HitSound
+@onready var destroyed_sound = $SFX/DestroyedSound
+
 var player = null
 var score := 0:
 	set(value):
@@ -60,12 +64,14 @@ func _on_player_laser_shot(laser_scene, location):
 	var laser = laser_scene.instantiate()
 	laser.global_position = location
 	laser_container.add_child(laser)
+	laser_sound.play()
 
 
 func _on_space_junk_spawn_timer_timeout():
 	var space_junk = space_junk_scenes.pick_random().instantiate()
 	space_junk.global_position = Vector2(randf_range(10, 1140), -50)
 	space_junk.destroyed.connect(_on_space_junk_destroyed)
+	space_junk.hit.connect(_on_space_junk_hit)
 	space_junk_container.add_child(space_junk)
 	
 
@@ -76,13 +82,18 @@ func _on_asteroid_spawn_timer_timeout():
 	asteroid_container.add_child(asteroid)
 
 func _on_space_junk_destroyed(points):
+	hit_sound.play()
 	score += points
 	if score > high_score:
 		high_score = score
 	
 func _on_player_destroyed():
+	destroyed_sound.play()
 	game_over_screen.set_score(score)
 	game_over_screen.set_high_score(high_score)
 	save_game()
 	await get_tree().create_timer(1).timeout
 	game_over_screen.visible = true
+	
+func _on_space_junk_hit():
+	hit_sound.play()
