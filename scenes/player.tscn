@@ -47,7 +47,10 @@ script = ExtResource("1_e7w3a")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5gaa5")
-animation = &"VeryDamaged"
+animation = &"FullHealth"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-5, -4, -15, 5, -15, 11, -13, 11, -5, 7, -3, 7, -3, 13, 3, 13, 3, 7, 6, 7, 13, 11, 15, 11, 15, 5, 5, -4, 0, -13)
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(0, -16)

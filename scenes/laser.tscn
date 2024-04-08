@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://ba1x5t7o54pmc"]
+
+[ext_resource type="Script" path="res://scripts/laser.gd" id="1_dkai2"]
+[ext_resource type="Texture2D" uid="uid://c5exng8pr6hrx" path="res://assets/Foozle_2DS0011_Void_MainShip/Main ship weapons/PNGs/laser.png" id="1_tfh7v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2n03c"]
+size = Vector2(2, 10)
+
+[node name="Laser" type="Area2D"]
+script = ExtResource("1_dkai2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_tfh7v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_2n03c")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, 2)
+scale = Vector2(0.1, 0.05)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
