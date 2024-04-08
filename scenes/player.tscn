@@ -42,6 +42,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_e7w3a")
 
