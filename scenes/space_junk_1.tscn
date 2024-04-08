@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://db1lwau7pnvq6"]
+
+[ext_resource type="PackedScene" uid="uid://bbo74vm05gd1t" path="res://scenes/space_junk.tscn" id="1_r4ueg"]
+[ext_resource type="Texture2D" uid="uid://crk6bfx5bg4x5" path="res://assets/Foozle_2DS0011_Void_MainShip/Main Ship/Main Ship - Engines/PNGs/Main Ship - Engines - Base Engine.png" id="2_l0ehr"]
+
+[node name="SpaceJunk1" instance=ExtResource("1_r4ueg")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_l0ehr")

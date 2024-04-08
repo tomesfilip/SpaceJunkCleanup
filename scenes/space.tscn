@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://d14pe7h0pn0gn"]
+[gd_scene load_steps=8 format=3 uid="uid://d14pe7h0pn0gn"]
 
 [ext_resource type="PackedScene" uid="uid://2xb440ueyavp" path="res://scenes/player.tscn" id="1_jlj46"]
 [ext_resource type="Script" path="res://scripts/space.gd" id="1_wldxv"]
 [ext_resource type="PackedScene" uid="uid://uhba4leoxv4v" path="res://scenes/asteroid.tscn" id="4_iney7"]
 [ext_resource type="PackedScene" uid="uid://bbo74vm05gd1t" path="res://scenes/space_junk.tscn" id="4_jqrsb"]
+[ext_resource type="PackedScene" uid="uid://db1lwau7pnvq6" path="res://scenes/space_junk_1.tscn" id="5_1oaeq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_40ptf"]
 size = Vector2(74.75, 649.5)
@@ -38,3 +39,6 @@ position = Vector2(225, 197)
 
 [node name="SpaceJunk" parent="." instance=ExtResource("4_jqrsb")]
 position = Vector2(513, 57)
+
+[node name="SpaceJunk1" parent="." instance=ExtResource("5_1oaeq")]
+position = Vector2(573, 75)
