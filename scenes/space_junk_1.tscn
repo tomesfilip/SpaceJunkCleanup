@@ -6,6 +6,7 @@
 [node name="SpaceJunk1" instance=ExtResource("1_r4ueg")]
 speed = 150
 hp = 1
+points = 200
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_l0ehr")

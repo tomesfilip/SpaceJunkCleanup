@@ -17,7 +17,10 @@ config/icon="res://icon.svg"
 
 [display]
 
-window/layer_4="space"
+window/layer_4=""
+window/layer_3=""
+window/layer_2="asteroid"
+window/layer_1="player"
 
 [input]
 

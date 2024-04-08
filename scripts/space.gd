@@ -7,10 +7,16 @@ extends Node2D
 @onready var laser_container = $LaserContainer
 @onready var space_junk_container = $SpaceJunkContainer
 @onready var asteroid_container = $AsteroidContainer
+@onready var hud = $UILayer/HUD
 
 var player = null
+var score := 0:
+	set(value):
+		score = value
+		hud.score = score
 
 func _ready():
+	score = 0
 	player = get_tree().get_first_node_in_group("player")
 	assert(player != null)
 	
@@ -31,6 +37,7 @@ func _on_player_laser_shot(laser_scene, location):
 func _on_space_junk_spawn_timer_timeout():
 	var space_junk = space_junk_scenes.pick_random().instantiate()
 	space_junk.global_position = Vector2(randf_range(100, 1000), -50)
+	space_junk.destroyed.connect(_on_space_junk_destroyed)
 	space_junk_container.add_child(space_junk)
 	
 
@@ -39,3 +46,6 @@ func _on_asteroid_spawn_timer_timeout():
 	var asteroid = asteroid_scenes.pick_random().instantiate()
 	asteroid.global_position = Vector2(randf_range(100, 1000), -50)
 	asteroid_container.add_child(asteroid)
+
+func _on_space_junk_destroyed(points):
+	score += points
