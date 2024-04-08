@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d14pe7h0pn0gn"]
+[gd_scene load_steps=11 format=3 uid="uid://d14pe7h0pn0gn"]
 
 [ext_resource type="PackedScene" uid="uid://2xb440ueyavp" path="res://scenes/player.tscn" id="1_jlj46"]
 [ext_resource type="Script" path="res://scripts/space.gd" id="1_wldxv"]
@@ -6,7 +6,19 @@
 [ext_resource type="PackedScene" uid="uid://bbo74vm05gd1t" path="res://scenes/space_junk.tscn" id="4_jqrsb"]
 [ext_resource type="PackedScene" uid="uid://db1lwau7pnvq6" path="res://scenes/space_junk_1.tscn" id="5_1oaeq"]
 [ext_resource type="PackedScene" uid="uid://bc5bdluir5vuq" path="res://scenes/hud.tscn" id="5_bgsbf"]
+[ext_resource type="Texture2D" uid="uid://dvp3ulsqdn1gl" path="res://assets/bg-space.jpg" id="5_wj8x6"]
 [ext_resource type="PackedScene" uid="uid://b1y1ulrs6hqnt" path="res://scenes/game_over_screen.tscn" id="6_ohw6g"]
+[ext_resource type="Texture2D" uid="uid://d4gxe4g183igs" path="res://assets/star.png" id="9_dnkm4"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bxg8a"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(576, 1, 1)
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = -1000.0
+initial_velocity_max = -1000.0
+gravity = Vector3(0, 0, 0)
 
 [node name="Space" type="Node2D"]
 script = ExtResource("1_wldxv")
@@ -19,6 +31,18 @@ asteroid_scenes = Array[PackedScene]([ExtResource("4_iney7")])
 
 [node name="GameOverScreen" parent="UILayer" instance=ExtResource("6_ohw6g")]
 visible = false
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(0, 648)
+
+[node name="SpaceBackground" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_repeat = 3
+texture = ExtResource("5_wj8x6")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 1152, 648)
 
 [node name="AsteroidSpawnTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -40,6 +64,14 @@ scale = Vector2(1e-05, 1e-05)
 [node name="AsteroidContainer" type="Node2D" parent="."]
 
 [node name="SpaceJunkContainer" type="Node2D" parent="."]
+
+[node name="StarParticleEffect" type="GPUParticles2D" parent="."]
+position = Vector2(576, -50)
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_bxg8a")
+texture = ExtResource("9_dnkm4")
+lifetime = 1.25
+preprocess = 5.0
 
 [connection signal="timeout" from="AsteroidSpawnTimer" to="." method="_on_asteroid_spawn_timer_timeout"]
 [connection signal="timeout" from="SpaceJunkSpawnTimer" to="." method="_on_space_junk_spawn_timer_timeout"]

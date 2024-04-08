@@ -11,6 +11,7 @@ extends Node2D
 @onready var game_over_screen = $UILayer/GameOverScreen
 @onready var asteroid_spawn_timer = $AsteroidSpawnTimer
 @onready var space_junk_spawn_timer = $SpaceJunkSpawnTimer
+@onready var parallax_background = $ParallaxBackground
 
 var player = null
 var score := 0:
@@ -18,6 +19,7 @@ var score := 0:
 		score = value
 		hud.score = score
 var high_score := 0
+var scroll_speed = 70
 
 func _ready():
 	var save_file = FileAccess.open("user://save.data", FileAccess.READ)
@@ -47,6 +49,11 @@ func _process(delta):
 		asteroid_spawn_timer.wait_time -= delta * 0.02
 	if space_junk_spawn_timer.wait_time > 0.15:
 		space_junk_spawn_timer.wait_time -= delta * 0.04
+		
+	parallax_background.scroll_offset.y += delta * scroll_speed
+	
+	if parallax_background.scroll_offset.y >= 648:
+		parallax_background.scroll_offset.y = 0
 
 
 func _on_player_laser_shot(laser_scene, location):
