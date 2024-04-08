@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://2xb440ueyavp" path="res://scenes/player.tscn" id="1_jlj46"]
 [ext_resource type="Script" path="res://scripts/space.gd" id="1_wldxv"]
-[ext_resource type="PackedScene" uid="uid://ba1x5t7o54pmc" path="res://scenes/laser.tscn" id="3_5mncr"]
 [ext_resource type="PackedScene" uid="uid://uhba4leoxv4v" path="res://scenes/asteroid.tscn" id="4_iney7"]
+[ext_resource type="PackedScene" uid="uid://bbo74vm05gd1t" path="res://scenes/space_junk.tscn" id="4_jqrsb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_40ptf"]
 size = Vector2(74.75, 649.5)
@@ -31,10 +31,10 @@ shape = SubResource("RectangleShape2D_t4lxg")
 position = Vector2(577, 583)
 scale = Vector2(1e-05, 1e-05)
 
-[node name="Laser" parent="." instance=ExtResource("3_5mncr")]
-position = Vector2(578, 606)
-
 [node name="LaserContainer" type="Node2D" parent="."]
 
 [node name="Asteroid" parent="LaserContainer" instance=ExtResource("4_iney7")]
 position = Vector2(225, 197)
+
+[node name="SpaceJunk" parent="." instance=ExtResource("4_jqrsb")]
+position = Vector2(513, 57)
