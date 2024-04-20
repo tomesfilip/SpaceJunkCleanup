@@ -50,7 +50,7 @@
 **Goal**: Design and implement user interface elements and scoring system to enhance player experience.
 
 **Tasks**:
-1. Create UI elements for health indicator, score display, and high score display.
+1. Create UI elements for score display, and high score display.
 2. Develop scoring system to track player's progress and calculate scores based on actions.
 
 **Deliverables**:
